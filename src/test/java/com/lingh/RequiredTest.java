@@ -23,6 +23,14 @@ public class RequiredTest {
                     </Record>
                     """, TestRecord.class);
         });
+        Assertions.assertDoesNotThrow(() -> {
+            XML_MAPPER.readValue("""
+                    <Record type="">
+                        <driverClassName>
+                        </driverClassName>
+                    </Record>
+                    """, TestRecordWithoutLocalName.class);
+        });
     }
 
     @Getter
@@ -36,6 +44,25 @@ public class RequiredTest {
         @JsonCreator
         public TestRecord(
                 @JsonProperty(required = true) @JacksonXmlProperty(localName = "type", isAttribute = true)
+                String type,
+                @JsonProperty(required = true) @JacksonXmlProperty(localName = "driverClassName")
+                String driverClassName) {
+            this.type = type;
+            this.driverClassName = driverClassName;
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @JacksonXmlRootElement(localName = "Record")
+    static class TestRecordWithoutLocalName {
+        private String type;
+
+        private String driverClassName;
+
+        @JsonCreator
+        public TestRecordWithoutLocalName(
+                @JsonProperty(required = true) @JacksonXmlProperty(isAttribute = true)
                 String type,
                 @JsonProperty(required = true) @JacksonXmlProperty(localName = "driverClassName")
                 String driverClassName) {
