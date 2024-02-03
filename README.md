@@ -1,5 +1,7 @@
 # jackson-mixed-annotations-test
 
+- For https://github.com/FasterXML/jackson-dataformat-xml/issues/628 .
+
 - Execute the following command on the Ubuntu 22.04.3 instance with `SDKMAN!` installed.
 
 ```shell
@@ -13,7 +15,7 @@ cd ./jackson-mixed-annotations-test/
 
 - Log.
 ```shell
-./mvnw clean test
+$ ./mvnw clean test
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] --------------< com.lingh:jackson-mixed-annotations-test >--------------
@@ -51,8 +53,8 @@ cd ./jackson-mixed-annotations-test/
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.lingh.RequiredTest
-[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.273 s <<< FAILURE! -- in com.lingh.RequiredTest
-[ERROR] com.lingh.RequiredTest.assertRequiredValue -- Time elapsed: 0.243 s <<< FAILURE!
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.189 s <<< FAILURE! -- in com.lingh.RequiredTest
+[ERROR] com.lingh.RequiredTest.assertRequiredValue -- Time elapsed: 0.171 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Unexpected exception thrown: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing required creator property '' (index 0)
  at [Source: (StringReader); line: 4, column: 1] (through reference chain: com.lingh.RequiredTest$TestRecordWithoutLocalName[""])
@@ -61,7 +63,7 @@ Unexpected exception thrown: com.fasterxml.jackson.databind.exc.MismatchedInputE
         at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
         at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
         at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
-        at com.lingh.RequiredTest.assertRequiredValue(RequiredTest.java:26)
+        at com.lingh.RequiredTest.assertRequiredValue(RequiredTest.java:27)
         at java.base/java.lang.reflect.Method.invoke(Method.java:580)
         at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
         at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
@@ -81,7 +83,7 @@ Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing 
         at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4899)
         at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3846)
         at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3814)
-        at com.lingh.RequiredTest.lambda$assertRequiredValue$1(RequiredTest.java:27)
+        at com.lingh.RequiredTest.lambda$assertRequiredValue$1(RequiredTest.java:28)
         at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
         ... 6 more
 
@@ -89,7 +91,7 @@ Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing 
 [INFO] Results:
 [INFO] 
 [ERROR] Failures: 
-[ERROR]   RequiredTest.assertRequiredValue:26 Unexpected exception thrown: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing required creator property '' (index 0)
+[ERROR]   RequiredTest.assertRequiredValue:27 Unexpected exception thrown: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing required creator property '' (index 0)
  at [Source: (StringReader); line: 4, column: 1] (through reference chain: com.lingh.RequiredTest$TestRecordWithoutLocalName[""])
 [INFO] 
 [ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
@@ -97,8 +99,8 @@ Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.020 s
-[INFO] Finished at: 2024-01-23T18:52:29+08:00
+[INFO] Total time:  2.002 s
+[INFO] Finished at: 2024-02-03T22:36:57+08:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.2:test (default-test) on project jackson-mixed-annotations-test: There are test failures.
 [ERROR] 

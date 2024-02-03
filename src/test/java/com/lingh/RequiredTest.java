@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Test;
 public class RequiredTest {
     @Test
     void assertRequiredValue() {
-        ObjectMapper XML_MAPPER = XmlMapper.builder().build();
+        ObjectMapper XML_MAPPER = XmlMapper.builder().addModule(new ParameterNamesModule()).build();
         Assertions.assertDoesNotThrow(() -> {
             XML_MAPPER.readValue("""
                     <Record type="">
