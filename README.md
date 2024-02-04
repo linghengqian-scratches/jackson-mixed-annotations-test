@@ -8,6 +8,20 @@
 sdk install java 21.0.2-graalce
 sdk use java 21.0.2-graalce
 
+git clone git@github.com:FasterXML/jackson-dataformat-xml.git -b 2.17
+cd ./jackson-dataformat-xml/
+git reset --hard 9f1aa0f5054a7a75acfc8155df9aee50059fb5da
+./mvnw clean install -T1C -DskipTests
+
+cd ../
+
+git clone git@github.com:FasterXML/jackson-modules-java8.git -b 2.17
+cd ./jackson-modules-java8/
+git reset --hard 1876ea82f326e05757d2a439af2b56290bb5d7c3
+./mvnw clean install -T1C -DskipTests
+
+cd ../
+
 git clone git@github.com:linghengqian/jackson-mixed-annotations-test.git
 cd ./jackson-mixed-annotations-test/
 ./mvnw clean test
@@ -53,8 +67,8 @@ $ ./mvnw clean test
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.lingh.RequiredTest
-[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.189 s <<< FAILURE! -- in com.lingh.RequiredTest
-[ERROR] com.lingh.RequiredTest.assertRequiredValue -- Time elapsed: 0.171 s <<< FAILURE!
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.194 s <<< FAILURE! -- in com.lingh.RequiredTest
+[ERROR] com.lingh.RequiredTest.assertRequiredValue -- Time elapsed: 0.174 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Unexpected exception thrown: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing required creator property '' (index 0)
  at [Source: (StringReader); line: 4, column: 1] (through reference chain: com.lingh.RequiredTest$TestRecordWithoutLocalName[""])
@@ -80,9 +94,9 @@ Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing 
         at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:348)
         at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185)
         at com.fasterxml.jackson.dataformat.xml.deser.XmlDeserializationContext.readRootValue(XmlDeserializationContext.java:104)
-        at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4899)
-        at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3846)
-        at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3814)
+        at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4905)
+        at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3848)
+        at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3816)
         at com.lingh.RequiredTest.lambda$assertRequiredValue$1(RequiredTest.java:28)
         at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
         ... 6 more
@@ -99,8 +113,8 @@ Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Missing 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.002 s
-[INFO] Finished at: 2024-02-03T22:36:57+08:00
+[INFO] Total time:  2.014 s
+[INFO] Finished at: 2024-02-04T13:59:49+08:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.2:test (default-test) on project jackson-mixed-annotations-test: There are test failures.
 [ERROR] 
